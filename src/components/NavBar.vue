@@ -1,5 +1,5 @@
 <script setup>
-import SearchBar from "./SearchBar.vue";
+import Search from "./Search.vue";
 const props = defineProps({
     title: String,
 
@@ -10,7 +10,7 @@ const props = defineProps({
 
 <nav>
     <h2>{{ props.title }}</h2>
-    <SearchBar />
+    <Search />
 </nav>
 
 </template>

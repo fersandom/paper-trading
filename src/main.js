@@ -5,5 +5,5 @@ import servicesStore from './stores/servicesStore'
 
 
 createApp(App)
-.provide(servicesStore)
-.mount('#app')
+    .provide(servicesStore)
+    .mount('#app')

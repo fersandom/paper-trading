@@ -1,20 +1,24 @@
 <script setup>
-import axios from "axios";
-import NavigatorBar from "./components/NavigatorBar.vue";
+import { inject } from "vue";
+import NavBar from "./components/NavBar.vue";
+import SearchResultsContainer from "./components/SearchResultsContainer.vue";
+import servicesStore from "./stores/servicesStore";
+inject(servicesStore);
 
-console.log(import.meta.env.VITE_API_KEY);
-async function fetchApple() {
-  let dataStock;
-  await axios.get(`https://finnhub.io/api/v1/stock/candle?symbol=IBML&resolution=D&count=500&token=${import.meta.env.VITE_API_KEY}`)
-    .then(response => { dataStock = response.data });
-  console.log(dataStock);
-}
-
-fetchApple();
 </script>
 
 <template>
-<NavigatorBar title="Paper Trading"/>
+  <NavBar title="Paper Trading" />
+
+  <section v-if="servicesStore.state.cleanResults.length !== 0">
+    <SearchResultsContainer :results=servicesStore.state.cleanResults />
+  </section>
 </template>
 
-<style scoped></style>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
+
+* {
+  font-family: 'Karla', sans-serif;
+}
+</style>
