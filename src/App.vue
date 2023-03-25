@@ -1,5 +1,6 @@
 <script setup>
 import axios from "axios";
+import NavigatorBar from "./components/NavigatorBar.vue";
 
 console.log(import.meta.env.VITE_API_KEY);
 async function fetchApple() {
@@ -13,7 +14,7 @@ fetchApple();
 </script>
 
 <template>
-  <h1>Hola</h1>
+<NavigatorBar title="Paper Trading"/>
 </template>
 
 <style scoped></style>
