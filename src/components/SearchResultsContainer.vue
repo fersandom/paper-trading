@@ -7,9 +7,9 @@ const props = defineProps({
 </script>
 
 <template>
-    <div v-for="result, index in props.results">
+    <section v-for="result in props.results">
         <SearchResult :symbol=result.displaySymbol :description=result.description />
-    </div>
+    </section>
 </template>
 
 <style scoped>

@@ -3,18 +3,17 @@ import { reactive, readonly } from "vue";
 
 const state = reactive({
     cleanResults: [],
-    rawResults: {}
+    stockChartData: Object
 })
 
 const methods = {
 
     async search(query) {
+        let rawResults
         state.cleanResults = []
         await axios.get(`https://finnhub.io/api/v1/search?q=${query}&token=${import.meta.env.VITE_API_KEY}`)
-            .then(response => { state.rawResults = response.data })
-        this.cleanResults(state.rawResults)
-        console.log(state.cleanResults);
-        
+            .then(response => { rawResults = response.data })
+        this.cleanResults(rawResults)        
     },
 
     cleanResults(object){
@@ -24,6 +23,13 @@ const methods = {
            } 
         });
     },
+
+    async fetchChartData(symbol) {
+        await axios.get(`https://finnhub.io/api/v1/stock/candle?symbol=${symbol}&resolution=D&count=200&token=${import.meta.env.VITE_API_KEY}`)
+            .then(response => { state.stockChartData = response.data });
+            console.log(state.stockChartData);
+    },
+
 
 }
 
