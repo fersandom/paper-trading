@@ -3,6 +3,7 @@ import { inject } from "vue";
 import NavBar from "./components/NavBar.vue";
 import SearchResultsContainer from "./components/SearchResultsContainer.vue";
 import servicesStore from "./stores/servicesStore";
+import StockChart from "./components/StockChart.vue";
 inject(servicesStore);
 
 </script>
@@ -12,6 +13,10 @@ inject(servicesStore);
 
   <section v-if="servicesStore.state.cleanResults.length !== 0">
     <SearchResultsContainer :results=servicesStore.state.cleanResults />
+  </section>
+
+  <section>
+    <StockChart />
   </section>
 </template>
 
